@@ -1,0 +1,1805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brazilian Jiu-Jitsu - Complete Guide</title>
+    <style>
+/* ========== CSS VARIABLES ========== */
+:root {
+    --primary: #1a1a2e;
+    --secondary: #16213e;
+    --accent: #e94560;
+    --gold: #d4af37;
+    --light: #f5f5f5;
+    --dark: #2c3e50;
+    --success: #27ae60;
+    --warning: #f39c12;
+}
+
+/* ========== RESET & BASE ========== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+/* ========== NAVIGATION ========== */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(26, 26, 46, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 1rem 2rem;
+}
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--gold);
+    text-decoration: none;
+}
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+.nav-links a {
+    color: var(--light);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ========== SECTIONS ========== */
+section {
+    padding: 5rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+.section-subtitle {
+    text-align: center;
+    color: var(--light);
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ========== HERO ========== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6rem 2rem;
+}
+.hero h1 {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+.hero p {
+    font-size: 1.5rem;
+    color: var(--light);
+    margin-bottom: 2rem;
+}
+.btn {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0.5rem;
+    display: inline-block;
+    transition: all 0.3s;
+}
+.btn-primary {
+    background: var(--gold);
+    color: var(--primary);
+}
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+}
+.btn-secondary {
+    background: transparent;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+}
+.btn-secondary:hover {
+    background: var(--gold);
+    color: var(--primary);
+}
+.quote-block {
+    background: rgba(255,255,255,0.1);
+    border-left: 4px solid var(--gold);
+    padding: 1.5rem;
+    margin: 2rem 0;
+    font-style: italic;
+    color: var(--light);
+}
+.quote-block cite {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--gold);
+}
+
+/* ========== INFO BOXES ========== */
+.info-box {
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.info-box h3 {
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+/* ========== TIMELINE ========== */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+}
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50%;
+    margin-bottom: 3rem;
+    position: relative;
+}
+.timeline-item:nth-child(even) {
+    justify-content: flex-start;
+    padding-right: 0;
+    padding-left: 50%;
+}
+.timeline-content {
+    background: rgba(255,255,255,0.95);
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.timeline-year {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+.timeline-title {
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin: 0.5rem 0;
+}
+
+/* ========== LEGENDS GRID ========== */
+.legends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.legend-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+.legend-card:hover { transform: translateY(-10px); }
+.legend-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 2rem;
+    text-align: center;
+    color: var(--light);
+}
+.legend-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin: 0 auto 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    color: var(--primary);
+}
+.legend-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gold);
+}
+.legend-body { padding: 1.5rem; }
+.legend-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+.stat {
+    text-align: center;
+    padding: 0.5rem;
+    background: var(--secondary);
+    border-radius: 8px;
+    color: var(--light);
+}
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--gold);
+}
+.stat-label { font-size: 0.8rem; opacity: 0.8; }
+
+/* ========== TECHNIQUE TABS ========== */
+.technique-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+.tab-btn {
+    padding: 1rem 2rem;
+    background: rgba(255,255,255,0.1);
+    border: 2px solid var(--gold);
+    color: var(--light);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.tab-btn.active, .tab-btn:hover {
+    background: var(--gold);
+    color: var(--primary);
+}
+.technique-category { display: none; }
+.technique-category.active {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+.technique-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+.technique-card:hover { transform: scale(1.02); }
+.technique-header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    padding: 1.5rem;
+    color: var(--light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.technique-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+.badge-beginner { background: var(--success); }
+.badge-intermediate { background: var(--warning); }
+.badge-advanced { background: var(--accent); }
+.badge-street { background: #9b59b6; }
+.technique-body { padding: 1.5rem; }
+.technique-steps {
+    counter-reset: step;
+    list-style: none;
+}
+.technique-steps li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 1rem;
+}
+.technique-steps li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    width: 2rem;
+    height: 2rem;
+    background: var(--gold);
+    color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+.technique-tips {
+    background: rgba(39, 174, 96, 0.1);
+    border-left: 4px solid var(--success);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0 8px 8px 0;
+}
+.technique-warning {
+    background: rgba(231, 76, 60, 0.1);
+    border-left: 4px solid var(--accent);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0 8px 8px 0;
+}
+
+/* ========== CONDITIONS GRID ========== */
+.conditions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.condition-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+.condition-card h4 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+.condition-card.top { border-left: 4px solid var(--success); }
+.condition-card.bottom { border-left: 4px solid var(--accent); }
+
+/* ========== PERSONALITY GRID ========== */
+.personality-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+.personality-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+}
+.personality-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
+.personality-icon { font-size: 3rem; margin-bottom: 0.5rem; }
+
+/* ========== LEVERAGE DIAGRAM ========== */
+.leverage-diagram {
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+.leverage-type {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    padding: 1rem;
+    margin: 0.5rem;
+    background: var(--secondary);
+    border-radius: 10px;
+    color: var(--light);
+}
+
+/* ========== BELT RANKS ========== */
+.belt-ranks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.belt {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.belt:hover { transform: scale(1.1); }
+.belt-bar {
+    width: 150px;
+    height: 30px;
+    border-radius: 15px;
+    margin-bottom: 0.5rem;
+}
+.belt-white { background: linear-gradient(90deg, #fff, #e0e0e0); }
+.belt-blue { background: linear-gradient(90deg, #1e3a8a, #3b82f6); }
+.belt-purple { background: linear-gradient(90deg, #581c87, #a855f7); }
+.belt-brown { background: linear-gradient(90deg, #5d4037, #8d6e63); }
+.belt-black { background: linear-gradient(90deg, #000, #333); }
+.belt-coral { background: linear-gradient(90deg, #dc2626, #f87171); }
+.belt-red { background: linear-gradient(90deg, #7f1d1d, #ef4444); }
+.belt-name { color: var(--light); font-weight: bold; }
+.belt-time { color: var(--gold); font-size: 0.9rem; }
+.belt-details {
+    background: rgba(255,255,255,0.95);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    color: var(--dark);
+    display: none;
+}
+.belt.active .belt-details { display: block; }
+
+/* ========== MOTIVATION SECTION ========== */
+.motivation-section {
+    background: linear-gradient(135deg, var(--accent), #c0392b);
+    padding: 5rem 2rem;
+    text-align: center;
+    color: var(--light);
+}
+.quote-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.quote { display: none; }
+.quote.active { display: block; }
+.quote-text {
+    font-size: 1.8rem;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+.quote-author {
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-weight: bold;
+}
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+.dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.dot.active { background: var(--gold); }
+
+/* ========== FOOTER ========== */
+footer {
+    background: var(--primary);
+    color: var(--light);
+    padding: 4rem 2rem 2rem;
+}
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+}
+.footer-section h3 { color: var(--gold); margin-bottom: 1.5rem; }
+.footer-section ul { list-style: none; }
+.footer-section li { margin-bottom: 0.8rem; }
+.footer-section a { color: var(--light); text-decoration: none; }
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2.5rem; }
+    .timeline::before { left: 20px; }
+    .timeline-item, .timeline-item:nth-child(even) {
+        padding-left: 60px;
+        padding-right: 0;
+        justify-content: flex-start;
+    }
+    .leverage-type { width: 100%; display: block; }
+}
+   .motivation-section .info-box {
+    color: #2c3e50 !important;
+} </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-container">
+        <a href="#" class="logo">🥋 BJJ Master</a>
+        <ul class="nav-links">
+            <li><a href="#history">History</a></li>
+            <li><a href="#legends">Legends</a></li>
+            <li><a href="#conditions">Positions</a></li>
+            <li><a href="#techniques">Techniques</a></li>
+            <li><a href="#belts">Belts</a></li>
+            <li><a href="#motivation">Motivation</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ========== HERO SECTION ========== -->
+<section class="hero">
+    <div>
+        <h1>Brazilian Jiu-Jitsu</h1>
+        <p>The Gentle Art - Where Technique Triumphs Over Strength</p>
+        <div class="quote-block">
+            <p>"Give me a place to stand and a lever long enough and I will move the world."</p>
+            <cite>— Archimedes, 220 BC</cite>
+        </div>
+        <div>
+            <a href="#techniques" class="btn btn-primary">Start Learning</a>
+            <a href="#history" class="btn btn-secondary">Explore History</a>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PART 2: HISTORY WILL GO HERE ========== -->
+<section id="history">
+    <h2 class="section-title">The History of BJJ</h2>
+    <p class="section-subtitle">From Japan to Brazil to the World</p>
+    
+    <div class="info-box">
+        <h3>The Primary Strategy of BJJ</h3>
+        <p>Brazilian Jiu-Jitsu places great emphasis on ground fighting techniques (ne waza in Japan). The primary strategy is to take the opponent to the ground and force them to fight you there. The theory is simple and proven: if you are skilled at fighting on the ground and your attacker is not, your attacker will be virtually at your mercy once you have them on the ground.</p>
+        <p>More than 80% of all street fights end up on the ground according to experts including Rorion Gracie. This makes ground fighting skills essential for any well-rounded martial artist.</p>
+    </div>
+
+    <div class="leverage-diagram">
+        <h3>The Importance of Leverage</h3>
+        <p>Virtually every technique in Brazilian Jiu-Jitsu makes use of leverage. To excel in jiu-jitsu you must understand what leverage really is and how it works within the context of the art.</p>
+        <p>When you learn the principles of leverage, you will know how and why your techniques work or don't work. Learn the principles and you will be able to create your own submissions and defend against your opponents' submission attempts far more effectively.</p>
+        
+        <div class="leverage-type">
+            <h4>First Class Lever</h4>
+            <p>Fulcrum between effort and load (crowbar, seesaw)</p>
+            <p><em>Example: Armbar applies first class lever principles</em></p>
+        </div>
+        <div class="leverage-type">
+            <h4>Second Class Lever</h4>
+            <p>Load between fulcrum and effort (wheelbarrow)</p>
+            <p><em>Example: Side mount escape uses second class lever</em></p>
+        </div>
+        <div class="leverage-type">
+            <h4>Third Class Lever</h4>
+            <p>Effort between fulcrum and load (tweezers, broom)</p>
+            <p><em>Example: Knee squeeze restricts movement</em></p>
+        </div>
+    </div>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1882</div>
+                <h3 class="timeline-title">Jigoro Kano Creates Judo</h3>
+                <p>In Tokyo, Japan, Professor Jigoro Kano develops Kodokan Judo, emphasizing throws and ground fighting. This becomes the foundation for Brazilian Jiu-Jitsu. Kano's philosophy focused on maximum efficiency and mutual welfare.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1897</div>
+                <h3 class="timeline-title">Mitsuyo Maeda Begins Training</h3>
+                <p>Mitsuyo Maeda (Count Koma), a direct student of Kano, begins training with Kodokan Judo. He would later travel the world challenging fighters and proving Judo's effectiveness in real combat situations.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1904</div>
+                <h3 class="timeline-title">Maeda Travels to United States</h3>
+                <p>Maeda travels to the United States with instructor Tsunejiro Tomita. They demonstrate their art at West Point and perform for President Theodore Roosevelt at the White House.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1909-1914</div>
+                <h3 class="timeline-title">Maeda Arrives in Brazil</h3>
+                <p>Maeda arrives in Brazil on a mission to help establish a Japanese colony. In Belém, he meets businessman Gastão Gracie who helps him establish the colony and returns the favor by having Maeda teach his son.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1916-1921</div>
+                <h3 class="timeline-title">Carlos Gracie Studies Under Maeda</h3>
+                <p>At age 15, Carlos Gracie begins studying under Mitsuyo Maeda, continuing until he was 21. This training took place at a time when it was considered improper for a Japanese instructor to teach a non-Japanese person. Carlos was never defeated in his fights.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1925</div>
+                <h3 class="timeline-title">First Gracie Academy Opens</h3>
+                <p>Carlos Gracie opens the first Gracie Academy in Rio de Janeiro with his younger brother Hélio as co-instructor. This marks the official beginning of organized BJJ instruction and the Gracie family's commitment to teaching the art.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1920s-1940s</div>
+                <h3 class="timeline-title">Hélio Gracie Refines the Art</h3>
+                <p>Hélio Gracie, smaller and weaker than most opponents, adapted the techniques to emphasize leverage and timing over strength. He developed many submissions and guard positions that became signature BJJ techniques, making the art accessible to smaller practitioners.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1951</div>
+                <h3 class="timeline-title">Helio vs. Kado Fight</h3>
+                <p>In July 1951, Helio Gracie faced 5th-degree black belt judo fighter Kado. Helio dominated the fight and eventually choked Kado into unconsciousness, becoming a national hero of Brazil and proving the effectiveness of his modified techniques.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1951</div>
+                <h3 class="timeline-title">Helio vs. Masahiko Kimura</h3>
+                <p>After defeating Kado, Helio challenged the team again. Masahiko Kimura accepted. After a grueling battle in front of 20,000 fans, Kimura broke Helio's elbow with an ude-garami arm lock now known as "The Kimura." Even with the broken elbow, Helio refused to give up.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1982</div>
+                <h3 class="timeline-title">Rolls Gracie's Death</h3>
+                <p>Rolls Gracie, son of Carlos Gracie, died in a hang gliding accident at age 31. He made major contributions to BJJ including advancing the open guard, leg locks, and takedowns. He promoted Romero "Jacare" Cavalcanti to black belt before his death.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1985</div>
+                <h3 class="timeline-title">Alliance Team Formed</h3>
+                <p>Three years after Rolls' death, Romero "Jacare" Cavalcanti and his top students created the Alliance Team. The mission was to carry on the legacy of Rolls Gracie. Today Alliance is home to many world champions including Fabio Gurgel, Marcello Garcia, and Roberto Traven.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1993</div>
+                <h3 class="timeline-title">UFC 1 - Royce Gracie Dominates</h3>
+                <p>Royce Gracie, representing Gracie Jiu-Jitsu, wins the first Ultimate Fighting Championship despite being the smallest fighter. His victories demonstrated BJJ's effectiveness against strikers and wrestlers, sparking global interest in the art and changing martial arts forever.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">1994-2000</div>
+                <h3 class="timeline-title">Global Expansion</h3>
+                <p>Following UFC success, BJJ schools opened worldwide. The International Brazilian Jiu-Jitsu Federation (IBJJF) was founded in 1994, establishing standardized rules and tournaments. BJJ became a required skill for MMA fighters worldwide.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-content">
+                <div class="timeline-year">2000s-Present</div>
+                <h3 class="timeline-title">Modern Era & No-Gi Evolution</h3>
+                <p>No-Gi BJJ exploded in popularity with organizations like ADCC. New techniques emerged including leg lock systems, berimbolo, and guard pulling strategies. The art continues to evolve with contributions from competitors worldwide including Gordon Ryan and others.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h3>Techniques, Tactics, and Strategy</h3>
+        <p><strong>Techniques:</strong> The systematic procedures by which tasks are accomplished (specific moves like armbar, triangle)</p>
+        <p><strong>Tactics:</strong> The technique of deploying and directing maneuvers against an enemy (combining techniques for attacking, counterattacking, defending)</p>
+        <p><strong>Strategy:</strong> The science and art of overall planning and conduct of combat operations (planning ahead, understanding opponent personality types)</p>
+        <p>Advanced jiu-jitsu fighters are like generals who shoot. They plan, they maneuver, and they execute. Understanding all three levels is essential for championship-level performance.</p>
+    </div>
+</section>
+
+<!-- ========== PART 3: LEGENDS WILL GO HERE ========== -->
+<section id="legends">
+    <h2 class="section-title">BJJ Legends</h2>
+    <p class="section-subtitle">The Masters Who Defined the Art</p>
+    <!-- ========== LEGENDS SECTION CONTENT ========== -->
+<div class="legends-grid">
+    <div class="legend-card">
+        <div class="legend-header">
+            <div class="legend-avatar">GR</div>
+            <div class="legend-name">Gordon Ryan</div>
+            <div class="legend-belt">Black Belt | United Jiu-Jitsu</div>
+        </div>
+        <div class="legend-body">
+            <div class="legend-stats">
+                <div class="stat"><div class="stat-value">15+</div><div class="stat-label">ADCC Titles</div></div>
+                <div class="stat"><div class="stat-value">50+</div><div class="stat-label">Major Wins</div></div>
+            </div>
+            <p>Gordon Ryan revolutionized modern no-gi BJJ with his systematic leg lock game and back control dominance. Known for his methodical approach and extensive competition record, he's considered one of the greatest no-gi grapplers of all time.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li>Multiple ADCC World Champion</li>
+                <li>EBI Champion (multiple times)</li>
+                <li>Pioneered modern leg lock systems</li>
+                <li>Author of "Mastering Leg Locks"</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="legend-card">
+        <div class="legend-header">
+            <div class="legend-avatar">RG</div>
+            <div class="legend-name">Roger Gracie</div>
+            <div class="legend-belt">Black Belt | Gracie Barra</div>
+        </div>
+        <div class="legend-body">
+            <div class="legend-stats">
+                <div class="stat"><div class="stat-value">10</div><div class="stat-label">World Championships</div></div>
+                <div class="stat"><div class="stat-value">100+</div><div class="stat-label">Tournament Wins</div></div>
+            </div>
+            <p>Roger Gracie is known for his incredibly clean technique and dominant mount position. With 10 world championship titles, he represents the pinnacle of traditional gi BJJ. His teaching emphasizes fundamental excellence.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li>10x IBJJF World Champion</li>
+                <li>Known for perfect mount technique</li>
+                <li>Head instructor at Roger Gracie Academy</li>
+                <li>Popular online instructional content</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="legend-card">
+        <div class="legend-header">
+            <div class="legend-avatar">GA</div>
+            <div class="legend-name">Gabriel Garcia</div>
+            <div class="legend-belt">Black Belt | Alliance</div>
+        </div>
+        <div class="legend-body">
+            <div class="legend-stats">
+                <div class="stat"><div class="stat-value">3</div><div class="stat-label">World Titles</div></div>
+                <div class="stat"><div class="stat-value">Heavyweight</div><div class="stat-label">Division</div></div>
+            </div>
+            <p>Gabriel Garcia is a heavyweight champion known for his powerful passing game and submission skills. As one of the top competitors in the heavyweight division, he represents the strength and technique combination that defines elite BJJ.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li>Multiple IBJJF World Champion</li>
+                <li>Known for aggressive passing</li>
+                <li>Strong submission threat</li>
+                <li>Competes in top tournaments globally</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="legend-card">
+        <div class="legend-header">
+            <div class="legend-avatar">MG</div>
+            <div class="legend-name">Marcelo Garcia</div>
+            <div class="legend-belt">Black Belt | Marcelo Garcia Academy</div>
+        </div>
+        <div class="legend-body">
+            <div class="legend-stats">
+                <div class="stat"><div class="stat-value">9</div><div class="stat-label">World Championships</div></div>
+                <div class="stat"><div class="stat-value">ADCC</div><div class="stat-label">Superfight Champion</div></div>
+            </div>
+            <p>Marcelo Garcia is famous for his dynamic guard game and signature X-guard sweeps. His energetic style and innovative techniques influenced a generation of grapplers. He's known for the "X-Guard" and butterfly guard mastery.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li>9x IBJJF World Champion</li>
+                <li>ADCC Superfight Champion</li>
+                <li>Pioneer of X-Guard techniques</li>
+                <li>Founded Marcelo Garcia Academy</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="legend-card">
+        <div class="legend-header">
+            <div class="legend-avatar">HG</div>
+            <div class="legend-name">Hélio Gracie</div>
+            <div class="legend-belt">Co-Founder | Gracie Family</div>
+        </div>
+        <div class="legend-body">
+            <div class="legend-stats">
+                <div class="stat"><div class="stat-value">1913</div><div class="stat-label">Born</div></div>
+                <div class="stat"><div class="stat-value">2017</div><div class="stat-label">Passed</div></div>
+            </div>
+            <p>Hélio Gracie adapted Judo for smaller practitioners, creating the foundation of modern BJJ. Despite physical limitations, he challenged world-class fighters and proved technique could overcome size. His legacy lives on through millions of practitioners worldwide.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li>Co-founder of Gracie Jiu-Jitsu</li>
+                <li>Developed leverage-based techniques</li>
+                <li>Famous challenge matches</li>
+                <li>International BJJ icon</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="legend-card">
+        <div class="legend-header">
+            <div class="legend-avatar">CG</div>
+            <div class="legend-name">Carlos Gracie</div>
+            <div class="legend-belt">Founder | Gracie Family</div>
+        </div>
+        <div class="legend-body">
+            <div class="legend-stats">
+                <div class="stat"><div class="stat-value">1902</div><div class="stat-label">Born</div></div>
+                <div class="stat"><div class="stat-value">1994</div><div class="stat-label">Passed</div></div>
+            </div>
+            <p>Carlos Gracie learned from Mitsuyo Maeda and taught his brothers, starting the Gracie family tradition. He opened the first academy in 1925 and established the family's commitment to spreading BJJ. His teachings formed the basis of all Gracie lineages.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li>First to study under Maeda</li>
+                <li>Opened first Gracie Academy</li>
+                <li>Trained all Gracie brothers</li>
+                <li>Established BJJ in Brazil</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="legend-card">
+        <div class="legend-header">
+            <div class="legend-avatar">RC</div>
+            <div class="legend-name">Romero "Jacare" Cavalcanti</div>
+            <div class="legend-belt">Black Belt | Alliance Founder</div>
+        </div>
+        <div class="legend-body">
+            <div class="legend-stats">
+                <div class="stat"><div class="stat-value">29</div><div class="stat-label">Black Belts Promoted</div></div>
+                <div class="stat"><div class="stat-value">1985</div><div class="stat-label">Alliance Founded</div></div>
+            </div>
+            <p>Direct student of Rolls Gracie, Cavalcanti founded the Alliance Team in 1985. He's widely regarded as one of the top BJJ instructors in the world, serving as hand-to-hand combat consultant for U.S. Army Rangers and inductee into the Grappling Hall of Fame.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li>Founded Alliance Team</li>
+                <li>U.S. Army Rangers Instructor</li>
+                <li>Grappling Hall of Fame Inductee</li>
+                <li>Coach of the Year 2004</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="legend-card">
+        <div class="legend-header">
+            <div class="legend-avatar">RG2</div>
+            <div class="legend-name">Royce Gracie</div>
+            <div class="legend-belt">Black Belt | Gracie Family</div>
+        </div>
+        <div class="legend-body">
+            <div class="legend-stats">
+                <div class="stat"><div class="stat-value">3</div><div class="stat-label">Early UFC Wins</div></div>
+                <div class="stat"><div class="stat-value">180</div><div class="stat-label">lbs (UFC 1)</div></div>
+            </div>
+            <p>Royce Gracie brought BJJ to the world stage through UFC 1. Despite being the smallest fighter, he won three of the first four UFC tournaments, demonstrating that ground fighting could defeat strikers and wrestlers. This sparked the MMA revolution.</p>
+            <ul style="margin-top: 1rem; padding-left: 1.5rem;">
+                <li>UFC 1, 2, 4 Champion</li>
+                <li>Changed MMA forever</li>
+                <li>Proved BJJ effectiveness</li>
+                <li>International martial arts icon</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="info-box">
+    <h3>Understanding Fighter Personality Types</h3>
+    <p>According to psychological research and martial arts analysis, there are four main fighter personality types that manifest in BJJ:</p>
+    <div class="personality-grid">
+        <div class="personality-card">
+            <div class="personality-icon">⚡</div>
+            <h4>Aggressive</h4>
+            <p>Attacks and charges constantly at full power. Prefers pressure passing and constant offense.</p>
+        </div>
+        <div class="personality-card">
+            <div class="personality-icon">🎭</div>
+            <h4>Deceptive</h4>
+            <p>Uses timing, fakes, and quick movements assertively to gain advantage. Excels at sweeps and transitions.</p>
+        </div>
+        <div class="personality-card">
+            <div class="personality-icon">🛡️</div>
+            <h4>Defensive</h4>
+            <p>Defends constantly, stalls a lot, avoids submissions, escapes danger, and attacks rarely when safe.</p>
+        </div>
+        <div class="personality-card">
+            <div class="personality-icon">🎯</div>
+            <h4>Interceptive</h4>
+            <p>Sets traps and uses counterattacks frequently. Excels at guard retention and submission setups.</p>
+        </div>
+    </div>
+    <p style="margin-top: 1.5rem;"><strong>Strategic Insight:</strong> Every fighter has a natural tendency toward one or two styles. Understanding your opponent's type allows you to adapt your strategy accordingly. Advanced fighters can adapt their style to accommodate any opponent type.</p>
+</div>
+</section>
+
+<!-- ========== PART 4: POSITIONS/CONDITIONS WILL GO HERE ========== -->
+<section id="conditions">
+    <h2 class="section-title">The 18 Ground Fighting Conditions</h2>
+    <p class="section-subtitle">Every Position You Must Master</p>
+    <!-- ========== CONDITIONS SECTION CONTENT ========== -->
+<div class="info-box">
+    <h3>The 18 Ground Fighting Conditions</h3>
+    <p>There are nine primary situations that are most common to Brazilian Jiu-Jitsu and ground fighting in general. Each of these nine situations is fluid and has many variations. The successful ground fighter must have more than a few throws and a handful of submission techniques. The successful fighter needs a methodology for attacking, defending, counterattacking, and outsmarting different opponents in a wide variety of situations.</p>
+    <p><strong>Key Insight:</strong> Each situation has two aspects (top and bottom), giving us 18 total conditions that every BJJ practitioner must master.</p>
+</div>
+
+<div class="conditions-grid">
+    <!-- STANDING -->
+    <div class="condition-card top">
+        <h4>1. Standing Attacks</h4>
+        <p><strong>Position:</strong> Both fighters on feet</p>
+        <p><strong>Focus:</strong> Takedowns, clinches, distance management</p>
+        <p><strong>Key Skills:</strong> Single-leg, double-leg, hip throws, collar ties</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>2. Standing Counters</h4>
+        <p><strong>Position:</strong> Defending takedowns</p>
+        <p><strong>Focus:</strong> Sprawl, underhooks, framing</p>
+        <p><strong>Key Skills:</strong> Sprawl-and-brawl, whizzer, head control</p>
+    </div>
+
+    <!-- CLOSED GUARD -->
+    <div class="condition-card top">
+        <h4>3. Closed Guard (Top)</h4>
+        <p><strong>Position:</strong> On top, opponent has legs locked around waist</p>
+        <p><strong>Focus:</strong> Posture control, breaking guard, passing</p>
+        <p><strong>Key Skills:</strong> Posture up, knee cut, stack pass</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>4. Closed Guard (Bottom)</h4>
+        <p><strong>Position:</strong> On bottom, legs locked around opponent's waist</p>
+        <p><strong>Focus:</strong> Submissions, sweeps, control</p>
+        <p><strong>Key Skills:</strong> Armbar, triangle, omoplata, scissor sweep</p>
+    </div>
+
+    <!-- OPEN GUARD -->
+    <div class="condition-card top">
+        <h4>5. Open Guard (Top)</h4>
+        <p><strong>Position:</strong> On top, opponent's legs are open</p>
+        <p><strong>Focus:</strong> Passing, controlling distance</p>
+        <p><strong>Key Skills:</strong> Pressure passing, knee slice, Torreando</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>6. Open Guard (Bottom)</h4>
+        <p><strong>Position:</strong> On bottom, legs not locked</p>
+        <p><strong>Focus:</strong> Framing, creating space, submissions</p>
+        <p><strong>Key Skills:</strong> De la Riva, butterfly guard, X-guard</p>
+    </div>
+
+    <!-- HALF GUARD -->
+    <div class="condition-card top">
+        <h4>7. Half Guard (Top)</h4>
+        <p><strong>Position:</strong> Controlling one of opponent's legs</p>
+        <p><strong>Focus:</strong> Finishing the pass, controlling posture</p>
+        <p><strong>Key Skills:</strong> Knee cut, heavy pressure, underhook</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>8. Half Guard (Bottom)</h4>
+        <p><strong>Position:</strong> One leg trapped by opponent</p>
+        <p><strong>Focus:</strong> Escaping, sweeping, creating openings</p>
+        <p><strong>Key Skills:</strong> Shrimp, electric chair, Z-guard</p>
+    </div>
+
+    <!-- SIDE CONTROL -->
+    <div class="condition-card top">
+        <h4>9. Side Control (Top)</h4>
+        <p><strong>Position:</strong> Across opponent's torso, perpendicular</p>
+        <p><strong>Focus:</strong> Maintaining pressure, setting up submissions</p>
+        <p><strong>Key Skills:</strong> Kimura, Americana, arm trap</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>10. Side Control (Bottom)</h4>
+        <p><strong>Position:</strong> On bottom, opponent across chest</p>
+        <p><strong>Focus:</strong> Escaping, framing, regaining guard</p>
+        <p><strong>Key Skills:</strong> Elbow-knee escape, shrimp, framing</p>
+    </div>
+
+    <!-- NORTH-TO-SOUTH -->
+    <div class="condition-card top">
+        <h4>11. North-to-South (Top)</h4>
+        <p><strong>Position:</strong> Head-to-head with opponent</p>
+        <p><strong>Focus:</strong> Pressure, chokes, transitions</p>
+        <p><strong>Key Skills:</strong> North-south choke, arm trap, mount transition</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>12. North-to-South (Bottom)</h4>
+        <p><strong>Position:</strong> Opponent's head at your head</p>
+        <p><strong>Focus:</strong> Creating space, escaping, framing</p>
+        <p><strong>Key Skills:</strong> Frame, shrimp, bridge and roll</p>
+    </div>
+
+    <!-- KNEE-IN-THE-BELLY -->
+    <div class="condition-card top">
+        <h4>13. Knee-in-the-Belly (Top)</h4>
+        <p><strong>Position:</strong> Knee driving into opponent's abdomen</p>
+        <p><strong>Focus:</strong> Control, pressure, transition to mount</p>
+        <p><strong>Key Skills:</strong> Knee slide, mount transition, pressure</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>14. Knee-in-the-Belly (Bottom)</h4>
+        <p><strong>Position:</strong> Opponent's knee in your belly</p>
+        <p><strong>Focus:</strong> Removing knee, escaping, framing</p>
+        <p><strong>Key Skills:</strong> Frame, shrimp, knee removal</p>
+    </div>
+
+    <!-- MOUNT -->
+    <div class="condition-card top">
+        <h4>15. Mount (Top)</h4>
+        <p><strong>Position:</strong> Sitting on opponent's torso</p>
+        <p><strong>Focus:</strong> Maximum control, submissions, strikes</p>
+        <p><strong>Key Skills:</strong> Armbar, triangle, mounted kimura, Ezequiel choke</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>16. Mount (Bottom)</h4>
+        <p><strong>Position:</strong> Opponent sitting on your torso</p>
+        <p><strong>Focus:</strong> Protecting neck, escaping, framing</p>
+        <p><strong>Key Skills:</strong> Elbow-knee escape, shrimp, bridging</p>
+    </div>
+
+    <!-- BACK -->
+    <div class="condition-card top">
+        <h4>17. Back (Top)</h4>
+        <p><strong>Position:</strong> Behind opponent, hooks in</p>
+        <p><strong>Focus:</strong> Back control, chokes, finishing</p>
+        <p><strong>Key Skills:</strong> Rear naked choke, bow and arrow, seatbelt grip</p>
+    </div>
+    <div class="condition-card bottom">
+        <h4>18. Back (Bottom)</h4>
+        <p><strong>Position:</strong> Opponent behind you, hooks in</p>
+        <p><strong>Focus:</strong> Protecting neck, removing hooks, escaping</p>
+        <p><strong>Key Skills:</strong> Hand fight, hook removal, rolling escape</p>
+    </div>
+</div>
+
+<div class="info-box">
+    <h3>Why Master All 18 Conditions?</h3>
+    <p>Some of the 18 conditions describe dominant situations such as throwing your opponent to the ground or being mounted on your opponent's chest. Some describe defensive situations such as being under the mount or having an opponent on your back. Some are both offensive and defensive, such as working from the open guard and its many variations.</p>
+    <p><strong>The Point:</strong> The successful ground fighter must have more than a few throws and a handful of submission techniques. The successful fighter needs a methodology for attacking, defending, counterattacking, and outsmarting different opponents in a wide variety of situations. In other words, the successful fighter needs a strategic plan for how to work in all 18 conditions common to the game.</p>
+</div>
+
+<div class="info-box">
+    <h3>Classification Domains</h3>
+    <p>Brazilian Jiu-Jitsu approaches martial arts from four different domains, or classifications:</p>
+    <ul style="padding-left: 1.5rem; margin-top: 1rem;">
+        <li><strong>Grappling with the Gi:</strong> Teaches how to deal with clothing during a fight. Clothing can be used as a weapon on the street. Training with the gi adds something to your no-gi game.</li>
+        <li><strong>Grappling without the Gi:</strong> Teaches you to react more quickly and to use positional holds for leverage rather than relying on cloth. Essential for dealing with attackers wearing sleeveless shirts, shorts, or flimsy attire.</li>
+        <li><strong>NHB Fighting without the Gi:</strong> Also known as no-rules, vale tudo, or mixed martial arts (MMA). Adds the element of striking from standing and grounded positions.</li>
+        <li><strong>Self-Defense:</strong> Includes specialized techniques for defending oneself on the street, including one-on-one empty-hand techniques, defending against multiple attackers, and defending against weapon attacks.</li>
+    </ul>
+    <p style="margin-top: 1rem;"><strong>Important:</strong> To be a well-rounded jiu-jitsu fighter, it is important to train in all four classifications.</p>
+</div>
+</section>
+
+<!-- ========== PART 5: TECHNIQUES WILL GO HERE ========== -->
+<section id="techniques">
+    <h2 class="section-title">Technique Library</h2>
+    <p class="section-subtitle">Learn from Beginner to Advanced</p>
+    <!-- ========== TECHNIQUES SECTION CONTENT ========== -->
+<div class="info-box">
+    <h3>Techniques, Tactics, and Strategy</h3>
+    <p><strong>Techniques:</strong> The systematic procedure by which a complex or scientific task is accomplished (specific moves like armbar, triangle, kimura)</p>
+    <p><strong>Tactics:</strong> The technique of deploying and directing maneuvers against an enemy (combining techniques for attacking, counterattacking, defending)</p>
+    <p><strong>Strategy:</strong> The science and art of overall planning and conduct of combat operations (planning ahead, understanding opponent personality types)</p>
+    <p>Advanced jiu-jitsu fighters are like generals who shoot. They plan, they maneuver, and they execute. Understanding all three levels is essential for championship-level performance.</p>
+</div>
+
+<div class="technique-tabs">
+    <button class="tab-btn active" onclick="showCategory('beginner')">Beginner</button>
+    <button class="tab-btn" onclick="showCategory('intermediate')">Intermediate</button>
+    <button class="tab-btn" onclick="showCategory('advanced')">Advanced</button>
+    <button class="tab-btn" onclick="showCategory('street')">Street Defense</button>
+</div>
+
+<div id="beginner" class="technique-category active">
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Closed Guard Retention</div>
+            <div class="technique-badge badge-beginner">Beginner</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Learn to maintain your guard position and prevent opponents from passing.</p>
+            <ol class="technique-steps">
+                <li>Keep your feet on opponent's hips to control distance</li>
+                <li>Use your hands to control their posture (collar and sleeve grips)</li>
+                <li>Frame against their shoulders to create space</li>
+                <li>Move your hips to maintain angle and prevent pressure</li>
+                <li>Use knee shields when necessary to block passes</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Stay active - don't let them settle into your guard! Constant movement prevents them from establishing control.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Mount Escape (Shrimp)</div>
+            <div class="technique-badge badge-beginner">Beginner</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Escape from being mounted by shrimping to create space.</p>
+            <ol class="technique-steps">
+                <li>Trap one of opponent's arms to prevent them from posturing</li>
+                <li>Grab their far sleeve or collar for control</li>
+                <li>Shrimp your hips away from them to create space</li>
+                <li>Bring your knee up to create frame against their body</li>
+                <li>Roll to side and recover guard or stand up</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Keep your elbows tight to protect your neck! Don't let them isolate your arms for submissions.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Basic Armbar from Guard</div>
+            <div class="technique-badge badge-beginner">Beginner</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Submit your opponent from closed guard using an armbar.</p>
+            <ol class="technique-steps">
+                <li>Control one of their arms with both hands (wrist and elbow)</li>
+                <li>Break their posture down by pulling head toward you</li>
+                <li>Thrust your hip toward their face to create angle</li>
+                <li>Open your guard and swing leg over their head</li>
+                <li>Squeeze legs together and arch hips to finish</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Angle your body 45 degrees for better leverage! This prevents them from rolling out.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Side Control Escape</div>
+            <div class="technique-badge badge-beginner">Beginner</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Escape from side control using framing and shrimping.</p>
+            <ol class="technique-steps">
+                <li>Frame against their neck with near arm</li>
+                <li>Frame against their hip with far arm</li>
+                <li>Shrimp your hips away to create space</li>
+                <li>Bring knee up to block their advance</li>
+                <li>Reguard or stand up when space is created</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Keep your elbows tucked! This protects against armbars and kimuras.</div>
+        </div>
+    </div>
+</div>
+
+<div id="intermediate" class="technique-category">
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Triangle Choke</div>
+            <div class="technique-badge badge-intermediate">Intermediate</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Finish with a triangle choke from guard position.</p>
+            <ol class="technique-steps">
+                <li>Control opponent's posture with collar and sleeve grips</li>
+                <li>Isolate one arm across your body</li>
+                <li>Throw leg over shoulder and behind neck</li>
+                <li>Catch ankle and pull down to secure position</li>
+                <li>Angle body 45 degrees and squeeze knees together</li>
+                <li>Pull head down while extending hips to finish</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Cut the angle to 45 degrees for maximum pressure! This prevents them from posturing up.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Kimura from Side Control</div>
+            <div class="technique-badge badge-intermediate">Intermediate</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Apply Kimura lock from side control position.</p>
+            <ol class="technique-steps">
+                <li>Reach under opponent's arm from side control</li>
+                <li>Grab their wrist with your near hand</li>
+                <li>Step over their body with far leg</li>
+                <li>Grab your own wrist (figure-four grip)</li>
+                <li>Lift their arm and turn toward them</li>
+                <li>Apply pressure by rotating hips</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Keep their arm close to your body! This prevents them from escaping the lock.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Scissor Sweep</div>
+            <div class="technique-badge badge-intermediate">Intermediate</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Sweep opponent from closed guard using scissor motion.</p>
+            <ol class="technique-steps">
+                <li>Control opponent's posture with grips</li>
+                <li>Isolate one of their arms</li>
+                <li>Place legs in scissor position (one high, one low)</li>
+                <li>Push with top leg while pulling with bottom leg</li>
+                <li>Use momentum to roll them over</li>
+                <li>Follow to mount or back control</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Apply leverage when opponent is slightly imbalanced! This is the moment of maximum opportunity.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Rear Naked Choke</div>
+            <div class="technique-badge badge-intermediate">Intermediate</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Finish with rear naked choke from back control.</p>
+            <ol class="technique-steps">
+                <li>Secure seatbelt grip (one arm over, one under)</li>
+                <li>Insert choking arm under opponent's chin</li>
+                <li>Grab your own bicep with choking hand</li>
+                <li>Free other hand and grab opponent's head</li>
+                <li>Squeeze biceps together while pulling head</li>
+                <li>Keep hooks in to prevent escape</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Choke with your biceps, not your forearm! This creates proper blood choke pressure.</div>
+        </div>
+    </div>
+</div>
+
+<div id="advanced" class="technique-category">
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Berimbolo</div>
+            <div class="technique-badge badge-advanced">Advanced</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Dynamic inversion technique to take opponent's back from guard.</p>
+            <ol class="technique-steps">
+                <li>Establish deep half guard or butterfly guard</li>
+                <li>Control opponent's far leg and belt</li>
+                <li>Initiate inversion by lifting hips</li>
+                <li>Spin around opponent's body</li>
+                <li>Secure back control with hooks</li>
+                <li>Finish with rear naked choke or other submission</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> This requires flexibility and timing! Practice the motion slowly before adding speed.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Heel Hook (Inside)</div>
+            <div class="technique-badge badge-advanced">Advanced</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Dangerous leg lock targeting the knee ligaments.</p>
+            <ol class="technique-steps">
+                <li>Secure opponent's leg in entanglement position</li>
+                <li>Control their heel with both hands</li>
+                <li>Rotate your body to create angle</li>
+                <li>Apply rotational pressure to the heel</li>
+                <li>Keep opponent's knee aligned to prevent injury</li>
+                <li>Release immediately when opponent taps</li>
+            </ol>
+            <div class="technique-warning"><strong>DANGER:</strong> This technique can cause serious knee damage! Only practice with trusted partners who understand tap timing.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">X-Guard Sweep</div>
+            <div class="technique-badge badge-advanced">Advanced</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Marcelo Garcia's signature sweep from X-guard position.</p>
+            <ol class="technique-steps">
+                <li>Enter X-guard by trapping one of opponent's legs</li>
+                <li>Control their posture with collar grip</li>
+                <li>Use your legs to lift their base</li>
+                <li>Push their standing leg while pulling upper body</li>
+                <li>Roll them over to side or back</li>
+                <li>Follow to mount or back control</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Timing is everything! Execute when opponent is shifting weight.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Leg Drag Pass</div>
+            <div class="technique-badge badge-advanced">Advanced</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Advanced guard passing technique using leg drag.</p>
+            <ol class="technique-steps">
+                <li>Break opponent's guard by controlling hips</li>
+                <li>Grab opponent's far leg with near hand</li>
+                <li>Drag their leg across your body</li>
+                <li>Step over to side control position</li>
+                <li>Secure position with pressure</li>
+                <li>Transition to mount or back if opportunity arises</li>
+            </ol>
+            <div class="technique-tips"><strong>Tip:</strong> Maintain pressure throughout! Don't give them space to recover guard.</div>
+        </div>
+    </div>
+</div>
+
+<div id="street" class="technique-category">
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Clothing Grab Defense</div>
+            <div class="technique-badge badge-street">Street</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Defend against clothing grabs in street situations.</p>
+            <ol class="technique-steps">
+                <li>Immediately control the grabbing hand</li>
+                <li>Step toward the grab to reduce leverage</li>
+                <li>Use their momentum against them</li>
+                <li>Take them to ground if necessary</li>
+                <li>Control and create escape opportunity</li>
+            </ol>
+            <div class="technique-warning"><strong>WARNING:</strong> Street situations are unpredictable! Prioritize escape over submission when possible.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Multiple Attacker Awareness</div>
+            <div class="technique-badge badge-street">Street</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Positioning and awareness for multiple attacker scenarios.</p>
+            <ol class="technique-steps">
+                <li>Never let yourself be surrounded</li>
+                <li>Keep one attacker between you and others</li>
+                <li>Use environment to limit angles of attack</li>
+                <li>Disengage and create distance when possible</li>
+                <li>Escape is priority over engagement</li>
+            </ol>
+            <div class="technique-warning"><strong>WARNING:</strong> BJJ is less effective against multiple attackers! Situational awareness and escape are paramount.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Ground-and-Pound Defense</div>
+            <div class="technique-badge badge-street">Street</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Protect yourself from strikes while on the ground.</p>
+            <ol class="technique-steps">
+                <li>Keep elbows tight to protect vital areas</li>
+                <li>Frame against opponent's head to create space</li>
+                <li>Shield your face with forearms</li>
+                <li>Look for escape opportunities</li>
+                <li>Stand up when possible to reset</li>
+            </ol>
+            <div class="technique-warning"><strong>WARNING:</strong> Ground fighting with strikes is dangerous! Create distance and escape when possible.</div>
+        </div>
+    </div>
+
+    <div class="technique-card">
+        <div class="technique-header">
+            <div class="technique-name">Weapon Defense Basics</div>
+            <div class="technique-badge badge-street">Street</div>
+        </div>
+        <div class="technique-body">
+            <p class="technique-desc">Basic principles for defending against weapons.</p>
+            <ol class="technique-steps">
+                <li>Avoid confrontation when weapon is present</li>
+                <li>If unavoidable, control the weapon arm immediately</li>
+                <li>Use distance and angles to your advantage</li>
+                <li>Create opportunity to escape</li>
+                <li>Do not attempt complex techniques under pressure</li>
+            </ol>
+            <div class="technique-warning"><strong>WARNING:</strong> Weapon defense is extremely dangerous! Running away is always the best option.</div>
+        </div>
+    </div>
+</div>
+
+<div class="info-box">
+    <h3>Training Philosophy</h3>
+    <p>According to Relson Gracie: "In order to be world champion, you've got to be like a Brazilian; train morning and afternoon, five days a week to be at top level, and you've got to have a good teacher for sure."</p>
+    <p>The exact number of hours required to become a champion is a matter of opinion, but everyone agrees that it takes a lot of heart, a ton of hard work, lots of mat time, and plenty of competition experience.</p>
+    <p><strong>Mental Mastery:</strong> In one study, two men practiced free throws each night for a month, while a third only visualized shooting the ball. The first man visualized and practiced free throws, while the second man just shot the ball without visualizing. At the end of the month the most improved player was the one who both visualized and shot free throws. Coming in second was the man who simply visualized, and coming in last was the one who shot without visualizing. To be great — really great — you must give 100 percent of yourself, body and mind.</p>
+</div>
+</section>
+
+<!-- ========== PART 6: BELTS WILL GO HERE ========== -->
+<section id="belts">
+    <h2 class="section-title">Belt Ranking System</h2>
+    <p class="section-subtitle">The Journey from White to Red</p>
+    <!-- <!-- ========== BELTS SECTION CONTENT ========== -->
+<div class="info-box">
+    <h3>The Journey from White to Red</h3>
+    <p>The Brazilian Jiu-Jitsu belt system represents a journey of dedication, skill development, and personal growth. Unlike many martial arts, BJJ has relatively few belt colors, with significant time requirements between each rank. This ensures that each belt represents genuine competency and mastery.</p>
+    <p><strong>Click on any belt below</strong> to learn more about the requirements and expectations for that rank.</p>
+</div>
+
+<div class="belt-ranks">
+    <div class="belt" onclick="toggleBelt(this)">
+        <div class="belt-bar belt-white"></div>
+        <div class="belt-name">White Belt</div>
+        <div class="belt-time">0-2 Years</div>
+        <div class="belt-details">
+            <h4>White Belt - The Beginning</h4>
+            <p><strong>Duration:</strong> 0-2 years typical</p>
+            <p><strong>Focus:</strong> Survival, fundamentals, and basic positions</p>
+            <p><strong>Key Skills to Develop:</strong></p>
+            <ul>
+                <li>Learning to survive in bad positions</li>
+                <li>Basic guard retention</li>
+                <li>Fundamental escapes (mount, side control)</li>
+                <li>Basic submissions (armbar, triangle, rear naked choke)</li>
+                <li>Understanding positional hierarchy</li>
+            </ul>
+            <p><strong>Mindset:</strong> Focus on survival and defense. Don't worry about winning - focus on not losing. Learn to be comfortable in uncomfortable positions.</p>
+        </div>
+    </div>
+
+    <div class="belt" onclick="toggleBelt(this)">
+        <div class="belt-bar belt-blue"></div>
+        <div class="belt-name">Blue Belt</div>
+        <div class="belt-time">2-4 Years</div>
+        <div class="belt-details">
+            <h4>Blue Belt - The Foundation</h4>
+            <p><strong>Duration:</strong> 2-4 years typical</p>
+            <p><strong>Focus:</strong> Building a complete game, guard development, and combinations</p>
+            <p><strong>Key Skills to Develop:</strong></p>
+            <ul>
+                <li>Developing a reliable guard (closed, open, half)</li>
+                <li>Basic sweeps and guard passes</li>
+                <li>Combining techniques into sequences</li>
+                <li>Understanding leverage and timing</li>
+                <li>Beginning competition experience</li>
+            </ul>
+            <p><strong>Mindset:</strong> This is where you build your foundation. Expect to be tapped often by higher belts. Focus on understanding WHY techniques work, not just memorizing them.</p>
+        </div>
+    </div>
+
+    <div class="belt" onclick="toggleBelt(this)">
+        <div class="belt-bar belt-purple"></div>
+        <div class="belt-name">Purple Belt</div>
+        <div class="belt-time">4-7 Years</div>
+        <div class="belt-details">
+            <h4>Purple Belt - The Middle Path</h4>
+            <p><strong>Duration:</strong> 4-7 years typical</p>
+            <p><strong>Focus:</strong> Refinement, personal style development, and teaching basics</p>
+            <p><strong>Key Skills to Develop:</strong></p>
+            <ul>
+                <li>Developing a personal game and style</li>
+                <li>Advanced guard systems (De La Riva, X-guard, etc.)</li>
+                <li>Counter-attacks and chain wrestling</li>
+                <li>Ability to teach basic techniques to others</li>
+                <li>Competition success at intermediate level</li>
+            </ul>
+            <p><strong>Mindset:</strong> Purple belt is often considered the "make or break" rank. You should be able to handle most white and blue belts comfortably. Focus on refining your strengths and addressing weaknesses.</p>
+        </div>
+    </div>
+
+    <div class="belt" onclick="toggleBelt(this)">
+        <div class="belt-bar belt-brown"></div>
+        <div class="belt-name">Brown Belt</div>
+        <div class="belt-time">7-10 Years</div>
+        <div class="belt-details">
+            <h4>Brown Belt - The Expert</h4>
+            <p><strong>Duration:</strong> 7-10 years typical</p>
+            <p><strong>Focus:</strong> Mastery, teaching ability, and competition excellence</p>
+            <p><strong>Key Skills to Develop:</strong></p>
+            <ul>
+                <li>Near-complete technical mastery</li>
+                <li>Ability to teach all fundamental techniques</li>
+                <li>Advanced strategy and tactics</li>
+                <li>Consistent competition success</li>
+                <li>Leadership in the academy</li>
+            </ul>
+            <p><strong>Mindset:</strong> Brown belt is the final step before black. You should be able to dominate most purple belts and compete with black belts. Focus on consistency and preparing for the responsibility of black belt.</p>
+        </div>
+    </div>
+
+    <div class="belt" onclick="toggleBelt(this)">
+        <div class="belt-bar belt-black"></div>
+        <div class="belt-name">Black Belt</div>
+        <div class="belt-time">10+ Years</div>
+        <div class="belt-details">
+            <h4>Black Belt - The Expert</h4>
+            <p><strong>Duration:</strong> 10+ years typical (average 10-15 years)</p>
+            <p><strong>Focus:</strong> Teaching, competition, and art preservation</p>
+            <p><strong>Key Skills to Develop:</strong></p>
+            <ul>
+                <li>Complete technical mastery</li>
+                <li>Ability to run an academy</li>
+                <li>Representing the art with integrity</li>
+                <li>Continued learning and innovation</li>
+                <li>Mentoring the next generation</li>
+            </ul>
+            <p><strong>Mindset:</strong> Black belt is not the end - it's a new beginning. You represent the art and carry responsibility for its preservation and growth. Continue to learn, innovate, and give back to the community.</p>
+        </div>
+    </div>
+
+    <div class="belt" onclick="toggleBelt(this)">
+        <div class="belt-bar belt-coral"></div>
+        <div class="belt-name">Coral Belt</div>
+        <div class="belt-time">Red & Black</div>
+        <div class="belt-details">
+            <h4>Coral Belt - The Master</h4>
+            <p><strong>Requirements:</strong> 7th degree black belt (typically 25-30+ years training)</p>
+            <p><strong>Significance:</strong> The coral belt (red and black) represents mastery beyond the black belt. It is awarded to 7th degree black belts who have dedicated decades to the art.</p>
+            <p><strong>Notable Coral Belts:</strong></p>
+            <ul>
+                <li>Helio Gracie (awarded 7th degree)</li>
+                <li>Carlson Gracie</li>
+                <li>Rickson Gracie</li>
+                <li>Rorion Gracie</li>
+            </ul>
+            <p><strong>Mindset:</strong> Coral belt holders are living legends who have shaped the art. They represent the highest level of dedication and contribution to Brazilian Jiu-Jitsu.</p>
+        </div>
+    </div>
+
+    <div class="belt" onclick="toggleBelt(this)">
+        <div class="belt-bar belt-red"></div>
+        <div class="belt-name">Red Belt</div>
+        <div class="belt-time">Grandmaster</div>
+        <div class="belt-details">
+            <h4>Red Belt - The Grandmaster</h4>
+            <p><strong>Requirements:</strong> 9th and 10th degree black belt (typically 40-50+ years training)</p>
+            <p><strong>Significance:</strong> The red belt is reserved for the founders and pioneers of the art. It represents the highest possible achievement in Brazilian Jiu-Jitsu.</p>
+            <p><strong>Notable Red Belts:</strong></p>
+            <ul>
+                <li>Carlos Gracie Sr. (10th degree - founder)</li>
+                <li>Helio Gracie (10th degree - co-founder)</li>
+                <li>Carlson Gracie (9th degree)</li>
+            </ul>
+            <p><strong>Mindset:</strong> Red belt holders are the architects of Brazilian Jiu-Jitsu. Their legacy extends beyond technique to the philosophy and culture of the art itself.</p>
+        </div>
+    </div>
+</div>
+
+<div class="info-box">
+    <h3>Stripe System</h3>
+    <p>Within each belt rank (except red), practitioners earn stripes (usually 4) before advancing to the next belt. Stripes represent progress within a belt level and are typically awarded every 6-12 months for colored belts.</p>
+    <p><strong>Stripe Requirements:</strong></p>
+    <ul>
+        <li>Consistent training attendance</li>
+        <li>Technical improvement</li>
+        <li>Time in grade</li>
+        <li>Competition participation (optional but encouraged)</li>
+        <li>Character and attitude</li>
+    </ul>
+</div>
+
+<div class="info-box">
+    <h3>Children's Belt System</h3>
+    <p>Children (under 16) follow a different belt system with additional colors to provide more frequent progression and motivation:</p>
+    <ul>
+        <li>White Belt</li>
+        <li>Grey Belt (with white, solid, or black bar)</li>
+        <li>Yellow Belt (with white, solid, or black bar)</li>
+        <li>Orange Belt (with white, solid, or black bar)</li>
+        <li>Green Belt (with white, solid, or black bar)</li>
+    </ul>
+    <p>At age 16, children transition to the adult belt system, typically starting at white or blue belt depending on their previous rank and skill level.</p>
+</div> -->
+</section>
+
+<!-- ========== PART 7: MOTIVATION WILL GO HERE ========== -->
+<div id="motivation" class="motivation-section">
+    <h2 class="section-title">Motivation & Wisdom</h2>
+    <!-- <!-- ========== MOTIVATION SECTION CONTENT ========== -->
+<div class="quote-carousel">
+    <div class="quote active" id="quote1">
+        <p class="quote-text">"Now the general who wins a battle makes many calculations in his temple ere the battle is fought. The general who loses a battle makes but few calculations beforehand. Thus do many calculations lead to victory, and few calculations to defeat: how much more no calculation at all!"</p>
+        <p class="quote-author">— Sun Tzu, The Art of War</p>
+    </div>
+    <div class="quote" id="quote2">
+        <p class="quote-text">"Give me a place to stand and a lever long enough and I will move the world."</p>
+        <p class="quote-author">— Archimedes, 220 BC</p>
+    </div>
+    <div class="quote" id="quote3">
+        <p class="quote-text">"If I always appear prepared, it is because before entering on an undertaking, I have meditated for long and have foreseen what may occur. It is not genius which reveals to me suddenly and secretly what I should do in circumstances unexpected by others; it is thought and preparation."</p>
+        <p class="quote-author">— Napoleon Bonaparte</p>
+    </div>
+    <div class="quote" id="quote4">
+        <p class="quote-text">"In order to be world champion, you've got to be like a Brazilian; train morning and afternoon, five days a week to be at top level, and you've got to have a good teacher for sure."</p>
+        <p class="quote-author">— Relson Gracie</p>
+    </div>
+    <div class="quote" id="quote5">
+        <p class="quote-text">"No martial art can maintain its claim as a real-life fighting art without being able to prove its efficiency in the field of no-holds-barred."</p>
+        <p class="quote-author">— Carlson Gracie</p>
+    </div>
+</div>
+
+<div class="carousel-dots">
+    <span class="dot active" onclick="showQuote(0)"></span>
+    <span class="dot" onclick="showQuote(1)"></span>
+    <span class="dot" onclick="showQuote(2)"></span>
+    <span class="dot" onclick="showQuote(3)"></span>
+    <span class="dot" onclick="showQuote(4)"></span>
+</div>
+
+<div class="motivation-stats">
+    <div class="stat-card">
+        <div class="stat-card-number">80%</div>
+        <div class="stat-card-label">of street fights end on the ground</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-card-number">10+</div>
+        <div class="stat-card-label">years to reach Black Belt</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-card-number">75%</div>
+        <div class="stat-card-label">of ADCC winners (1998-2001) from BJJ backgrounds</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-card-number">∞</div>
+        <div class="stat-card-label">ways to improve</div>
+    </div>
+</div>
+
+<div class="info-box" style="background: rgba(255,255,255,0.95); color: var(--text-dark); border-radius: 15px; padding: 2rem; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">:
+    <h3>The Mental Game</h3>
+    <p>Mastery of the mental aspect of training is just as critical as the physical. In one study, two men practiced free throws each night for a month, while a third only visualized shooting the ball. The first man visualized and practiced free throws, while the second man just shot the ball without visualizing. At the end of the month the most improved player was the one who both visualized and shot free throws. Coming in second was the man who simply visualized, and coming in last was the one who shot without visualizing.</p>
+    <p>To be great — really great — you must give 100 percent of yourself, body and mind.</p>
+</div>
+
+<div class="info-box" style="background: rgba(255,255,255,0.95); border-radius: 15px; padding: 2rem; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    <h3>From Technician to Strategist</h3>
+    <p>This is a book about Brazilian jiu-jitsu, one of the world's greatest martial arts. From this book you will not only learn techniques and tactics of gi, no-gi, and NHB jiu-jitsu but also how to formulate a comprehensive strategy for winning. Whether you are a beginner or an accomplished veteran of the art, when you finish reading this book, your life as a martial artist will be forever changed.</p>
+    <p>Apply what you learn and you will find yourself transformed from follower to leader, from private to general, from technician to strategist.</p>
+</div>
+
+<div class="info-box" style="background: rgba(255,255,255,0.95); border-radius: 15px; padding: 2rem; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+    <h3>The Spirit of Rolls Gracie</h3>
+    <p>Rolls Gracie was a man of action to be sure, and he finished many fights, yet he was a truly good and generous person. Through his teaching and his example, Rolls influenced many of today's best — and best-known — jiu-jitsu fighters and coaches. "Rolls later passed his personal developments on to his brothers and cousins, giving the younger generations a great push forward. His influence on Rickson and Royler is unmistakable. He also taught Carlos Jr., Rorion, and Crolin."</p>
+    <p>His legacy lives on in the spirit of innovation, technical excellence, and generosity that defines the modern art.</p>
+</div> -->
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>About BJJ Master</h3>
+            <p>A comprehensive resource for learning Brazilian Jiu-Jitsu, from history to techniques.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href="#history">History</a></li>
+                <li><a href="#legends">Legends</a></li>
+                <li><a href="#techniques">Techniques</a></li>
+                <li><a href="#belts">Belt System</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Resources</h3>
+            <ul>
+                <li><a href="#">Find a School</a></li>
+                <li><a href="#">Competition Rules</a></li>
+                <li><a href="#">Training Tips</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 BJJ Master. Train hard, stay humble.</p>
+    </div>
+</footer>
+
+<!-- <!-- ========== PART 8: JAVASCRIPT FUNCTIONALITY ========== -->
+<script>
+// ========== TECHNIQUE TABS FUNCTIONALITY ==========
+function showCategory(categoryId) {
+    // Hide all technique categories
+    const categories = document.querySelectorAll('.technique-category');
+    categories.forEach(cat => cat.classList.remove('active'));
+    
+    // Remove active class from all buttons
+    const buttons = document.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    
+    // Show selected category
+    const selectedCategory = document.getElementById(categoryId);
+    if (selectedCategory) {
+        selectedCategory.classList.add('active');
+    }
+    
+    // Add active class to clicked button
+    event.target.classList.add('active');
+}
+
+// ========== BELT TOGGLE FUNCTIONALITY ==========
+function toggleBelt(beltElement) {
+    // Toggle active class on clicked belt
+    beltElement.classList.toggle('active');
+    
+    // Optional: Close other belts when one is opened (uncomment if desired)
+    /*
+    const allBelts = document.querySelectorAll('.belt');
+    allBelts.forEach(belt => {
+        if (belt !== beltElement) {
+            belt.classList.remove('active');
+        }
+    });
+    */
+}
+
+// ========== QUOTE CAROUSEL FUNCTIONALITY ==========
+let currentQuoteIndex = 0;
+const totalQuotes = 5;
+
+function showQuote(index) {
+    // Hide all quotes
+    const quotes = document.querySelectorAll('.quote');
+    quotes.forEach(quote => quote.classList.remove('active'));
+    
+    // Update dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    // Show selected quote
+    const selectedQuote = document.getElementById(`quote${index + 1}`);
+    if (selectedQuote) {
+        selectedQuote.classList.add('active');
+    }
+    
+    // Activate selected dot
+    if (dots[index]) {
+        dots[index].classList.add('active');
+    }
+    
+    currentQuoteIndex = index;
+}
+
+// Auto-rotate quotes every 8 seconds
+setInterval(() => {
+    currentQuoteIndex = (currentQuoteIndex + 1) % totalQuotes;
+    showQuote(currentQuoteIndex);
+}, 8000);
+
+// ========== SMOOTH SCROLLING FOR NAVIGATION LINKS ==========
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+            // Offset for fixed navigation
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+    });
+});
+
+// ========== MOBILE MENU TOGGLE (Optional Enhancement) ==========
+// Uncomment if you add a mobile menu button in the future
+/*
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const navLinks = document.querySelector('.nav-links');
+
+if (mobileMenuBtn && navLinks) {
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+    });
+}
+*/
+
+// ========== INITIALIZATION ==========
+console.log("BJJ Master website loaded successfully!");
+console.log("Features enabled: Technique tabs, Belt toggles, Quote carousel, Smooth scrolling");
+</script> -->
+<script>
+// PART 8 JAVASCRIPT INSERTS HERE
+</script>
+
+</body>
+</html>
